@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 
 export default function Header() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState('home');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -21,10 +24,10 @@ export default function Header() {
       <div className="container flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-8">
           <div className="flex items-center gap-2">
-            <div className="gradient-primary h-10 w-10 rounded-xl flex items-center justify-center">
+            <div className="gradient-primary h-10 w-10 rounded-xl flex items-center justify-center cursor-pointer" onClick={() => navigate('/')}>
               <Icon name="Play" size={24} className="text-white" />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent cursor-pointer" onClick={() => navigate('/')}>
               VIDSTREAM
             </span>
             <Badge variant="secondary" className="gradient-accent text-white border-0">
@@ -72,7 +75,7 @@ export default function Header() {
             <span className="absolute top-1 right-1 h-2 w-2 bg-accent rounded-full" />
           </Button>
 
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" onClick={() => navigate('/profile')}>
             <Icon name="User" size={20} />
           </Button>
 
